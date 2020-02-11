@@ -1,8 +1,7 @@
-#include "sample_while.h"
+#include "while.h"
 
 int main() 
 {
-	
 
 	return 0;
 }

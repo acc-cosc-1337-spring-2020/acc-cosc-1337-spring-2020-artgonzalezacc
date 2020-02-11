@@ -1,4 +1,4 @@
-#include "sample_for.h"
+#include "for.h"
 #include<iostream>
 
 //Write code for function display_numbers that accepts a number and 

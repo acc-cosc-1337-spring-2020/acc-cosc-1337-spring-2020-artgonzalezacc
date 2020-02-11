@@ -1,4 +1,4 @@
-#include "sample_for_ranged.h"
+#include "for_ranged.h"
 #include<iostream>
 #include<vector>
 
@@ -30,13 +30,4 @@ t
 */
 
 
-void loop_vector_w_index() 
-{
-	vector<int> nums = {9, 10, 99, 5,67 };
-
-	for (int i = 0; i < nums.size(); ++i) 
-	{
-		std::cout << nums[i] << "\n";
-	}
-}
 
