@@ -1,6 +1,7 @@
-﻿cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.8)
 
 project("cosc1337")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 include_directories(inc)
 
 MACRO(SUBDIRLIST result curdir)

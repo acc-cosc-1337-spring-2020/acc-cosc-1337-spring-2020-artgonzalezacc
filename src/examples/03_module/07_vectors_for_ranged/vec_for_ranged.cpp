@@ -1,9 +1,12 @@
-#include "for_ranged.h"
+#include "vec_for_ranged.h"
 #include<iostream>
-#include<vector>
 
-using std::vector;
 
+void say_hello_to_me(std::string &name)
+{
+    std::cout<<"Hello: "<<name;
+    
+}
 /*
 Write code for function loop_vector_w_auto with no parameters.
 The function creates an int vector with values 9, 10, 99, 5, 67
