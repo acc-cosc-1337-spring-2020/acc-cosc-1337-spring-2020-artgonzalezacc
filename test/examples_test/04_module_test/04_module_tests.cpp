@@ -1,7 +1,11 @@
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 #include "catch.hpp"
+#include <memory>
 #include "bank_account.h"
 #include "checking_account.h"
+#include "savings_account.h"
+
+using std::unique_ptr; using std::make_unique;
 
 TEST_CASE("Verify Test Configuration", "verification") {
 	REQUIRE(true == true);
@@ -9,79 +13,79 @@ TEST_CASE("Verify Test Configuration", "verification") {
 
 TEST_CASE("Test BankAccount constructor") 
 {
-	BankAccount account(500);
+	unique_ptr<BankAccount> account = make_unique<SavingsAccount>(90);
 
-	REQUIRE(account.get_balance() == 500);
+	REQUIRE(account->get_balance() == 500);
 }
 
 TEST_CASE("Test Bank account deposit") 
 {
-	BankAccount account(500);
-	REQUIRE(account.get_balance() == 500);
+	unique_ptr<BankAccount> account = make_unique<SavingsAccount>(500);
+	REQUIRE(account->get_balance() == 500);
 
-	account.deposit(50);
-	REQUIRE(account.get_balance() == 550);
+	account->deposit(50);
+	REQUIRE(account->get_balance() == 550);
 
-	REQUIRE_THROWS_AS(account.deposit(-50), Invalid);
-	REQUIRE(account.get_balance() == 550);
+	REQUIRE_THROWS_AS(account->deposit(-50), Invalid);
+	REQUIRE(account->get_balance() == 550);
 }
 
 TEST_CASE("Test BankAccount withdraw") 
 {
-	BankAccount account(500);
-	REQUIRE(account.get_balance() == 500);
+	unique_ptr<BankAccount> account = make_unique<SavingsAccount>(500);
+	REQUIRE(account->get_balance() == 500);
 
-	account.withdraw(50);
-	REQUIRE(account.get_balance() == 450);
+	account->withdraw(50);
+	REQUIRE(account->get_balance() == 450);
 
-	REQUIRE_THROWS_AS(account.withdraw(-1), Invalid);
-	REQUIRE(account.get_balance() == 450);
+	REQUIRE_THROWS_AS(account->withdraw(-1), Invalid);
+	REQUIRE(account->get_balance() == 450);
 
-	REQUIRE_THROWS_AS(account.withdraw(451), Invalid);
-	REQUIRE(account.get_balance() == 450);
+	REQUIRE_THROWS_AS(account->withdraw(451), Invalid);
+	REQUIRE(account->get_balance() == 450);
 
 }
 
 TEST_CASE("Test BankAccount default constuctor balance 0") 
 {
-	BankAccount account;
-	REQUIRE(account.get_balance() == 0);
+	unique_ptr<BankAccount> account = make_unique<SavingsAccount>();
+	REQUIRE(account->get_balance() == 0);
 }
 
 TEST_CASE("Test BankAccount initial open deposit >= 25") 
 {
-	BankAccount account;
-	REQUIRE(account.get_balance() == 0);
+	unique_ptr<BankAccount> account = make_unique<SavingsAccount>();
+	REQUIRE(account->get_balance() == 0);
 	
-	account.open(25);
-	REQUIRE(account.get_balance() == 25);
+	account->open(25);
+	REQUIRE(account->get_balance() == 25);
 }
 
 TEST_CASE("Test BankAccount initial open deposit < 25") 
 {
-	BankAccount account;
-	REQUIRE(account.get_balance() == 0);
+	unique_ptr<BankAccount> account = make_unique<SavingsAccount>();
+	REQUIRE(account->get_balance() == 0);
 
-	REQUIRE_THROWS_AS(account.open(24), Invalid);
+	REQUIRE_THROWS_AS(account->open(24), Invalid);
 }
 
 TEST_CASE("Test BankAccount static rate initialization") 
 {
-	BankAccount account;
+	unique_ptr<BankAccount> account = make_unique<SavingsAccount>();
 
-	REQUIRE(account.get_rate() == 0.025);
+	REQUIRE(account->get_rate() == 0.025);
 }
 
 TEST_CASE("Test CheckingAccount constructor")
 {
-	CheckingAccount account(500);
+	unique_ptr<BankAccount> account = make_unique<CheckingAccount>(500);
 
-	REQUIRE(account.get_balance() == 512);
+	REQUIRE(account->get_balance() == 512);
 }
 
 TEST_CASE("Test CheckingAccount get balance")
 {
-	CheckingAccount account(150);
-	REQUIRE(account.get_balance() == 153);
+	unique_ptr<BankAccount> account = make_unique<CheckingAccount>(500);
+	REQUIRE(account->get_balance() == 153);
 }
 

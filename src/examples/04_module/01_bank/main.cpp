@@ -1,27 +1,30 @@
 #include "checking_account.h"
+#include "savings_account.h"
+#include "customer.h"
 #include<iostream>
 #include<vector>
 #include<string>
+#include<memory>
 
 using std::cout; using std::cin;
+using std::unique_ptr; using std::make_unique;
 
 int main()
-{
-	CheckingAccount checking;
-	CheckingAccount checking1(90);
+{  	
+	//c++ 11
+	unique_ptr<BankAccount> s = make_unique<SavingsAccount>(90);
+	unique_ptr<BankAccount> c = make_unique<CheckingAccount>(100);
 	
-	
+	std::vector<unique_ptr<BankAccount>> accounts;
+	accounts.push_back(std::move(s));
+	accounts.push_back(std::move(c));
 
-	/*std::vector<BankAccount> accounts{ BankAccount(100),
-		BankAccount(200) };
-
-	for (auto act : accounts) 
+	for (auto &act : accounts) 
 	{
-		cout << act.get_balance() << "\n";
-	}*/
-
-
-	BankAccount account(500);
+		cout << act->get_balance() << "\n";
+	}
+	
+	/*
 	cin >> account;
 	cout << account;
 	display_balance(account);
@@ -41,7 +44,7 @@ int main()
 	catch (Invalid e) 
 	{
 		cout << e.get_error()<<"\n";
-	}
+	}*/
 
 	return 0;
 }

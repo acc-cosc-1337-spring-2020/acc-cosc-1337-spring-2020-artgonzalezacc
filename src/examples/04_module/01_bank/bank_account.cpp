@@ -1,6 +1,10 @@
 #include "bank_account.h"
 
 //bank_account.cpp
+int BankAccount::get_balance()const 
+{ 
+	return balance; 
+}
 
 void BankAccount::deposit(int amount)
 {
