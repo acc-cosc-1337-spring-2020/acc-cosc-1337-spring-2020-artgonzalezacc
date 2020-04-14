@@ -10,7 +10,7 @@ class BankAccount
 public:
 	BankAccount() = default;
 	explicit BankAccount(int b) : balance{ b } {}
-	virtual int get_balance()const = 0;
+	virtual int get_balance() const = 0;
 	void deposit(int amount);
 	void withdraw(int amount);
 	void open(int amount);
