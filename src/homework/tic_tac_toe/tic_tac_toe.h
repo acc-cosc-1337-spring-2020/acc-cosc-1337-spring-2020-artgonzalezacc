@@ -10,8 +10,9 @@ public:
 	void start_game(std::string first_player);
 	void mark_board(int position);
 	std::string get_player() const { return player; }
-	void display_board() const;
 	std::string get_winner()const { return winner; }
+	friend std::ostream& operator<<(std::ostream& out, const TicTacToe& t);
+	friend std::istream& operator>>(std::istream& in, TicTacToe& t);
 private:
 	void set_next_player();
 	bool check_board_full();
