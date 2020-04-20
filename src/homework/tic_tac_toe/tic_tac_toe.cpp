@@ -32,9 +32,13 @@ void TicTacToe::start_game(string first_player)
 
 void TicTacToe::mark_board(int position)
 {
-	if (position < 1 || position > 9)
+	if (position < 1 || position > 9 && pegs.size() == 9)
 	{
 		throw Error("Position must be 1 to 9.");
+	}
+	else if(position < 1 || position > 16 && pegs.size() == 16)
+	{
+		throw Error("Position must be 1 to 16.");
 	}
 	else if (player == "")
 	{
@@ -85,39 +89,16 @@ void TicTacToe::clear_board()
 
 bool TicTacToe::check_row_win()
 {
-	for (std::size_t i = 0; i < 9; i += 3)
-	{
-		if (pegs[i] == pegs[i + 1] && pegs[i + 1] == pegs[i + 2] && pegs[i] != " ")
-		{
-			return true;
-		}
-	}
-
 	return false;
 }
 
 bool TicTacToe::check_column_win()
 {
-	for (std::size_t i = 0; i < 3; i++)
-	{
-		if (pegs[i] == pegs[i + 3] && pegs[i + 3] == pegs[i + 6]
-			&& pegs[i + 6] != " ")
-		{
-			return true;
-		}
-	}
-
 	return false;
 }
 
 bool TicTacToe::check_diagonal_win()
 {
-	if (pegs[0] == pegs[4] && pegs[4] == pegs[8] && pegs[0] != " " ||
-		pegs[2] == pegs[4] && pegs[4] == pegs[6] && pegs[2] != " ")
-	{
-		return true;
-	}
-
 	return false;
 }
 
@@ -135,9 +116,16 @@ void TicTacToe::set_winner()
 
 std::ostream & operator<<(std::ostream & out, const TicTacToe & t)
 {
-	for (int i = 0; i < 9; i += 3)
+	for (std::size_t i = 0; i < t.pegs.size(); i += sqrt(t.pegs.size()))
 	{
-		out << t.pegs[i] << "|" << t.pegs[i + 1] << "|" << t.pegs[i + 2] << "\n";
+		out << t.pegs[i] << "|" << t.pegs[i + 1] << "|" << t.pegs[i + 2];
+
+		if (t.pegs.size() == 16)
+		{
+			out << "|" << t.pegs[i + 3];
+		}
+
+		out << "\n";
 	}
 
 	return out;
