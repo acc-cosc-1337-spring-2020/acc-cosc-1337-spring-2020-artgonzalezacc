@@ -30,11 +30,19 @@ int main()
 
 		do
 		{
-			int pos;
-			cout << "\nposition: \n";
-			cin >> pos;
-			game.mark_board(pos);
-			game.display_board();
+			try
+			{
+				int pos;
+				cout << "\nposition: \n";
+				cin >> pos;
+				game.mark_board(pos);
+				game.display_board();
+			}
+			catch (Error e)
+			{
+				cout << e.get_message();
+			}
+
 		} while (!game.game_over());
 
 		cout << "\nWinner: " << game.get_winner()<<"\n";
