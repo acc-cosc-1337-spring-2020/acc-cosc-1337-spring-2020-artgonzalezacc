@@ -8,7 +8,9 @@ using std::cout; using std::cin; using std::string;
 
 int main() 
 {
-	std::unique_ptr<TicTacToeManager> manager = std::make_unique< TicTacToeManager>();
+	TicTacToeData data;
+	std::unique_ptr<TicTacToeManager>  manager = std::make_unique<TicTacToeManager>(data);
+	
 	string cont;
 
 	do
@@ -61,7 +63,7 @@ int main()
 		} while (!game->game_over());
 
 		cout << "\nWinner: " << game->get_winner() << "\n";
-
+		
 		manager->save_game(game);
 
 		cout << "Enter Y to play again: ";
