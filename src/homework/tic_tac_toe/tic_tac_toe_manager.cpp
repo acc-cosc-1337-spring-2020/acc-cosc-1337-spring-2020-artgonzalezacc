@@ -2,8 +2,9 @@
 
 //cpp
 
-void TicTacToeManager::save_game(TicTacToe game)
+void TicTacToeManager::save_game(TicTacToe& game)
 {
+	update_winner_count(game.get_winner());
 	games.push_back(game);
 }
 
