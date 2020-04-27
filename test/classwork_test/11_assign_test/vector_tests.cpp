@@ -27,3 +27,13 @@ TEST_CASE("Test class copy with dynamic(heap) variables")
 	REQUIRE(v2[1] == 0);
 }
 
+TEST_CASE("Test class copy dynamic heap w 2 variables") 
+{
+	Vector v1(2);
+	Vector v2(3);
+	v2 = v1;
+	v1[1] = 5;
+
+	REQUIRE(v1[1] == v2[2]);
+}
+
