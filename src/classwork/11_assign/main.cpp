@@ -3,7 +3,8 @@
 
 int main() 
 {
-	use_vector();
+	Vector v1(3);
+	v1 = get_vector();
 
 	return 0;
 }
