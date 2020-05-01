@@ -44,7 +44,7 @@ Vector & Vector::operator=(const Vector & v)
 		temp[i] = v[i];
 	}
 
-	delete nums;
+	delete[] nums;//announce change in next class and delete this message
 
 	nums = temp;
 	size = v.size;
