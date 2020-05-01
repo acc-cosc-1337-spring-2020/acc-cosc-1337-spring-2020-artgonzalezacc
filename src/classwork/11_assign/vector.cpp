@@ -112,6 +112,37 @@ void Vector::Reserve(size_t new_allocation)
 }
 
 /*
+Reserve space
+Initialize element values beyond size to 0
+*/
+void Vector::Resize(size_t new_size) 
+{
+	Reserve(new_size);
+
+	for (size_t i = size ; i < new_size; ++i) 
+	{
+		nums[i] = 0;
+	}
+
+	size = new_size;
+}
+
+void Vector::Push_Back(int value)
+{
+	if (space == 0) 
+	{
+		Reserve(RESERVE_DEFAULT_SIZE);
+	}
+	else if(size == space)
+	{//should this be resize or reserve? 
+		Reserve(space * RESERVE_DEFAULT_MULTIPLIER);
+	}
+
+	nums[size] = value;
+	++size;
+}
+
+/*
 Release dynamic memory
 Deallocate memory
 */
