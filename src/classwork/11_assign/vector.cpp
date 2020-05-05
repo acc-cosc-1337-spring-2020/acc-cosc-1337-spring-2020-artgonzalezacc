@@ -1,10 +1,16 @@
 #include "vector.h"
 #include<iostream>
+
+Vector::Vector()
+	: size {0}, nums{nullptr}, space{0}
+{
+}
+
 /*
 Initialize nums to size dynamic array.
 Initialize each array element to 0.
 */
-Vector::Vector(size_t sz) 
+Vector::Vector(size_t sz)
 	: size{sz}, nums{new int[sz]}, space{sz}
 {
 	for (size_t i = 0; i < sz; ++i) 

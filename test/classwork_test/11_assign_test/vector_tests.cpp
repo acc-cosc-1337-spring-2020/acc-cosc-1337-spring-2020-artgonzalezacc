@@ -71,3 +71,13 @@ TEST_CASE("Test vector push back")
 
 	REQUIRE(v[3] == 5);
 }
+
+TEST_CASE("Test default constructor w push back") 
+{
+	Vector v;
+	REQUIRE(v.Capacity() == 0);
+	v.Push_Back(5);
+	REQUIRE(v.Capacity() == 8);
+	REQUIRE(v.Size() == 1);
+
+}
