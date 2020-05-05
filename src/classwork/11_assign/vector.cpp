@@ -164,8 +164,8 @@ void Vector<T>::Push_Back(T value)
 		Reserve(RESERVE_DEFAULT_SIZE);
 	}
 	else if(size == space)
-	{//should this be resize or reserve? 
-		Reserve(space * RESERVE_DEFAULT_MULTIPLIER);
+	{
+		Resize(space * RESERVE_DEFAULT_MULTIPLIER);
 	}
 
 	nums[size] = value;
