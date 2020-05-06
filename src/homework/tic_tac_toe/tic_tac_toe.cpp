@@ -3,7 +3,7 @@
 
 using std::string; using std::cout;
 
-bool TicTacToe::game_over() 
+bool TicTacToe::game_over()
 {
 	if (check_row_win() || check_column_win() || check_diagonal_win()) 
 	{
